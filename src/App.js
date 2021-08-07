@@ -1,6 +1,7 @@
 import { Container } from '@material-ui/core'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import Definitions from './components/Definitions/Definitions'
 import Header from './components/Header/Header'
 
 function App() {
@@ -20,10 +21,10 @@ function App() {
     }
   }
 
-  console.log('meanings')
-
+  // console.log('meanings')
   useEffect(() => {
     dictionaryApi()
+    // eslint-disable-next-line
   }, [word, category])
 
   return (
@@ -33,7 +34,12 @@ function App() {
     >
       <Container
         maxWidth='md'
-        style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100vh',
+          justifyContent: 'space-evenly',
+        }}
       >
         <Header
           category={category}
@@ -41,6 +47,10 @@ function App() {
           word={word}
           setWord={setWord}
         />
+
+        {meanings && (
+          <Definitions word={word} meanings={meanings} category={category} />
+        )}
       </Container>
     </div>
   )
