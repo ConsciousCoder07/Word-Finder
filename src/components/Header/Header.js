@@ -7,6 +7,8 @@ import {
 import './Header.css'
 import '../../data/category'
 import categories from '../../data/category'
+import { debounce } from 'lodash'
+import { useCallback } from 'react'
 
 const Header = ({ category, setCategory, word, setWord, lightMode }) => {
   const darkTheme = createTheme({
@@ -23,6 +25,12 @@ const Header = ({ category, setCategory, word, setWord, lightMode }) => {
     setWord('')
   }
 
+  // debounce - limiting the rate at which a function gets invoked
+  // debouncing the setWord event so that word doesn't change too often while we are typing
+  const handleWord = debounce((text) => {
+    setWord(text)
+  }, 1000)
+
   return (
     <div className='header'>
       <span className='title'>{word ? word : 'Word Finder'}</span>
@@ -30,8 +38,7 @@ const Header = ({ category, setCategory, word, setWord, lightMode }) => {
         <ThemeProvider theme={darkTheme}>
           <TextField
             label='Search a word'
-            value={word}
-            onChange={(e) => setWord(e.target.value)}
+            onChange={(e) => handleWord(e.target.value)}
             className='search'
           />
           <TextField
