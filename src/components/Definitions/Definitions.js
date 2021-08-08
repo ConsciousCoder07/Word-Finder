@@ -1,16 +1,20 @@
 import './Definitions.css'
+import ReactPlayer from 'react-player'
 
 const Definitions = ({ word, meanings, category, lightMode }) => {
   return (
     <div className='meanings'>
       {meanings[0] && word && category === 'en' && (
-        <audio
-          style={{ backgroundColor: '#fff', borderRadius: 10, width: '100%' }}
-          src={meanings[0].phonetics[0] && meanings[0].phonetics[0].audio}
-          controls
-        >
-          Your browser does not support the audio element.
-        </audio>
+        <div>
+          <ReactPlayer
+            className='react-player'
+            url={meanings[0].phonetics[0] && meanings[0].phonetics[0].audio}
+            width='100%'
+            height='54px'
+            playing={false}
+            controls={true}
+          />
+        </div>
       )}
 
       {word === '' ? (
