@@ -8,7 +8,6 @@ import './Header.css'
 import '../../data/category'
 import categories from '../../data/category'
 import { debounce } from 'lodash'
-import { useCallback } from 'react'
 
 const Header = ({ category, setCategory, word, setWord, lightMode }) => {
   const darkTheme = createTheme({

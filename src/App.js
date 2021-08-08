@@ -1,10 +1,10 @@
 import { Container, Switch, withStyles } from '@material-ui/core'
 import { grey } from '@material-ui/core/colors'
-
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import Definitions from './components/Definitions/Definitions'
 import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
 
 function App() {
   const [meanings, setMeanings] = useState([])
@@ -89,6 +89,7 @@ function App() {
           />
         )}
       </Container>
+      <Footer lightMode={lightMode} />
     </div>
   )
 }

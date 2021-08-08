@@ -22,27 +22,56 @@ const Definitions = ({ word, meanings, category, lightMode }) => {
       ) : (
         meanings.map((mean) =>
           mean.meanings.map((item) =>
-            item.definitions.map((def) => (
+            item.definitions.map((def, index) => (
               <div
+                key={index}
                 className='singleMeaning'
                 style={{
                   backgroundColor: lightMode ? '#3b5360' : 'white',
                   color: lightMode ? 'white' : 'black',
                 }}
               >
-                <b>{def.definition}</b>
-                <hr style={{ backgroundColor: 'black', width: '100%' }} />
+                {!index && (
+                  <strong
+                    className='part-of-speech'
+                    style={{
+                      backgroundColor: lightMode ? '#27363f' : '#587c92',
+                    }}
+                  >
+                    <i>{item.partOfSpeech}</i>
+                  </strong>
+                )}
+                <b>
+                  {index + 1}. {def.definition}
+                </b>
+
                 {def.example && (
                   <span>
+                    <hr
+                      style={{
+                        backgroundColor: 'black',
+                        width: '100%',
+                      }}
+                    />
                     <b>Example: </b>
                     {def.example}
                   </span>
                 )}
-                {def.synonyms && (
-                  <span>
+                {def.synonyms.length ? (
+                  <span class='synonym'>
                     <b>Synonyms: </b>
                     {def.synonyms.map((s) => `${s}, `)}
                   </span>
+                ) : (
+                  ''
+                )}
+                {def.antonyms.length ? (
+                  <span class='antonym'>
+                    <b>Antonyms: </b>
+                    {def.synonyms.map((s) => `${s}, `)}
+                  </span>
+                ) : (
+                  ''
                 )}
               </div>
             ))
