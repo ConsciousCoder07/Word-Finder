@@ -68,7 +68,7 @@ const Definitions = ({ word, meanings, category, lightMode }) => {
                 {def.antonyms.length ? (
                   <span class='antonym'>
                     <b>Antonyms: </b>
-                    {def.synonyms.map((s) => `${s}, `)}
+                    {def.antonyms.map((s) => `${s}, `)}
                   </span>
                 ) : (
                   ''
